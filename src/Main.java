@@ -1,15 +1,73 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+/*
+* A game has a beginning
+* a what to move forward
+* goal
+* obstacle, enemy or opponent
+*
+ */
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        char[] board = {'H', '.', '.', 'Z', '.', '.', '.', '$'};// 8 positions
+        char dungeon = '.';
+        char knight = 'H';
+        char enemy = 'Z';
+        char princess = '$';
+        int KnightPosition = 0;
+        int enemyPosition = 3;
+        int princessPosition = 7;
+        Scanner in = new Scanner(System.in);
+        // infinite loop-must break out when something happens like rescuing the princess
+        System.out.println("SAVING THE KINGDOM, press ENTER/RETURN to push forward.");
+        int turn = 1;
+        while (true) {
+            System.out.printf("Turn %d:\n", turn++);
+            for (int i = 0; i < 8; i++) {
+                if (i == KnightPosition) {
+                    System.out.println(knight);
+                } else if (i == enemyPosition) {
+                    System.out.println(enemy);
+                } else if (i == princessPosition) {
+                    System.out.println(princess);
+                } else {
+                    System.out.println(dungeon);
+                }
+            }
+
+            System.out.println("Enter to push forward.");
+            String userInput = in.nextLine();
+            KnightPosition++;
+            if (KnightPosition == enemyPosition) {
+                //remove enemy
+                enemyPosition = -1;
+                System.out.println("The knight has vanquished the enemy!");
+            }
+            if (KnightPosition == princessPosition) {
+                ;
+                princessPosition = -1; //remove princess
+                System.out.println("The knight has rescued the princess!");
+                break;//break out of infinite loop.
+
+            }
         }
+        System.out.println("VICTORY!!");
     }
-}
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
